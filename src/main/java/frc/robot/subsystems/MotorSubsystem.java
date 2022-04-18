@@ -7,30 +7,28 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class MotorSubsystem extends SubsystemBase {
- 
+public class MotorSubsystem extends SubsystemBase { 
   TalonFX motor;
 
   public MotorSubsystem() {
     motor = new TalonFX(40);
 
-    Thread printThread = new Thread(
-
-    new Runnable(){
-
+    //Print inverted and ticks
+    Thread printThread = new Thread( new Runnable(){
       @Override
       public void run() {
+        while (true){
         System.out.println(motor.getSelectedSensorPosition());
         System.out.println(motor.getInverted());
-        
-        try {
-          System.out.println(Thread.currentThread());
-          Thread.sleep(100);
-        } catch (Exception e) {
-          e.printStackTrace();
+    
+          try {
+            System.out.println(Thread.currentThread());
+            Thread.sleep(100);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
         }
       };
     });
@@ -38,7 +36,6 @@ public class MotorSubsystem extends SubsystemBase {
   }
 
   public void setMotorSpeed(double speed){
-    System.out.println("setting speed to: " + speed);
     motor.set(ControlMode.PercentOutput, speed);
   }
 

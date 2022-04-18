@@ -15,7 +15,6 @@ public class SetMotorRotationCommand extends CommandBase {
   public SetMotorRotationCommand(MotorSubsystem motorSubsystem, boolean inverted) {
     this.motorSubsystem = motorSubsystem;
     this.inverted = inverted;
-    System.out.println("NEW COMMAND!!!!!!!!");
   }
 
   @Override
